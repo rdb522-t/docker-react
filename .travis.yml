@@ -1,6 +1,12 @@
 sudo: required
+language: node_js
 services:
   - docker
+node_js:
+- 8
+cache:
+  directories:
+    - node_modules
 env:
   - CI=true
 
@@ -8,4 +14,4 @@ before_install:
   - docker build -t ryanb/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run ryanb/docker-react npm run test -- --coverage --forceExit
+  - docker run ryanb/docker-react npm run test -- --coverage
