@@ -1,9 +1,11 @@
 sudo: required
 services:
   - docker
+env:
+  - CI=true
 
 before_install:
   - docker build -t ryanb/docker-react -f Dockerfile.dev .
 
 script:
-  - docker run ryanb/docker-react CI=true npm run test -- --coverage --forceExit
+  - docker run ryanb/docker-react npm run test -- --coverage --forceExit
